@@ -1,4 +1,4 @@
-// Wait for DOM to be fully loaded
+
 document.addEventListener('DOMContentLoaded', function () {
     // Get form elements
     const loginForm = document.getElementById('loginForm');
@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const signupLink = document.getElementById('signupLink');
     const socialButtons = document.querySelectorAll('.social-button');
 
-    // Handle login form submission
+    // login form submission
     loginForm.addEventListener('submit', handleLogin);
 
-    // Handle social login buttons
+    // social login buttons
     socialButtons.forEach(button => {
         button.addEventListener('click', function () {
             const provider = this.getAttribute('data-provider');
@@ -46,30 +46,18 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Log the login attempt (in production, this would send to server)
+        // Log the login attempt (in production, this would send to server)           // more to add later//
         console.log('Login attempt:', {
             email: email,
             password: '***hidden***',
             remember: remember
-        });
+        }
+                   );
 
-        // Show success message (replace with actual authentication)
+        
         alert('Login functionality would be implemented here!\n\nEmail: ' + email + '\nRemember me: ' + remember);
 
-        // In production, you would do something like:
-        // fetch('/api/login', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ email, password, remember })
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     if (data.success) {
-        //         window.location.href = '/dashboard';
-        //     } else {
-        //         alert('Login failed: ' + data.message);
-        //     }
-        // });
+        
     }
 
     // Social login handler
@@ -77,8 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Social login with:', provider);
         alert('Social login with ' + provider.charAt(0).toUpperCase() + provider.slice(1) + ' would be implemented here!');
 
-        // In production, you would redirect to OAuth provider:
-        // window.location.href = '/auth/' + provider;
+      
     }
 
     // Forgot password handler
@@ -92,8 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Please enter your email address first');
         }
 
-        // In production:
-        // window.location.href = '/forgot-password';
+
     }
 
     // Signup handler
@@ -101,23 +87,22 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         alert('Sign up page would be shown here!');
 
-        // In production:
-        // window.location.href = '/signup';
+        
     }
 
-    // Email validation helper
+   
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
-    // Optional: Load remembered email from localStorage
+   
     if (localStorage.getItem('rememberedEmail')) {
         emailInput.value = localStorage.getItem('rememberedEmail');
         rememberCheckbox.checked = true;
     }
 
-    // Optional: Save email to localStorage when "Remember me" is checked
+  
     loginForm.addEventListener('submit', function () {
         if (rememberCheckbox.checked) {
             localStorage.setItem('rememberedEmail', emailInput.value);
@@ -125,4 +110,5 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.removeItem('rememberedEmail');
         }
     });
+
 });
